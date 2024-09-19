@@ -32,7 +32,7 @@
     }
 
     // Call changeHue every 1000 milliseconds (1 second)
-    setInterval(changeHue, 1000);
+    setInterval(changeHue, 1);
 </script>
 <p>I used this image several times before classes started to express my honest reaction to some things.</p>
 
@@ -73,6 +73,22 @@
     <li>A third Lapras Plush</li>
     
 </ul>
+
+<audio id="ahh piss" src="sniper_negativevocalization03.mp3"></audio>
+<audio id="nope" src="engineer_no01_1.mp3"></audio>
+<button id="playButton">Play some weird sound effect</button>
+<script>
+    document.getElementById('playButton').addEventListener('click', function() {
+        n = Math.random();
+        if(n <= 0.99) {
+            document.getElementById('nope').play();
+            alert("nope");
+        } else {
+            document.getElementById('ahh piss').play();
+        }
+    });
+</script>
+<br><br>
 
 <!-- 
 <ol>
@@ -120,6 +136,7 @@
   </form>
   
   <script>
+    <audio id="nope" src="engineer_no01_1.mp3"></audio>
     function showConfirmation() {
         document.body.innerHTML = `
             <h1>Thank you for submitting this random information :D</h1>
@@ -128,13 +145,12 @@
         `;
     }
 
-    var n = 0;
-
     function returnToHomePage() {
         n = Math.random();
-        if (n <= 0.5) {
+        if (n <= 0.8) {
             alert("no :p");
             displayImage();
+            // document.getElementById('nope').play(); // doesn't work
         } else {
             location.href = 'index.html';
         }
