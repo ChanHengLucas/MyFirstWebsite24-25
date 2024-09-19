@@ -18,15 +18,32 @@
 <h1>My first html page</h1>
 <p>Lucas Chan</p>
 
-<img src="bruh.png">
+<!-- Add the img tag here -->
+<img src="bruh.png" alt="Bruh Image">
+
+<script>
+    // Select the img element
+    var img = document.querySelector('img[src="bruh.png"]');
+
+    // Function to change the hue of the image
+    function changeHue() {
+        var hue = Math.floor(Math.random() * 361);
+        img.style.filter = 'hue-rotate(' + hue + 'deg)';
+    }
+
+    // Call changeHue every 1000 milliseconds (1 second)
+    setInterval(changeHue, 1000);
+</script>
 <p>I used this image several times before classes started to express my honest reaction to some things.</p>
 
 
 <p>I am <strong>so excited</strong> to learn website development <em>this semester</em>.</p>
 
-<p style="color: rgb(255, 0, 0);">Oh wow look at this red text :D</p>
+<!-- <strong> is used to make the text bold, while <em> is used to make the text display in italics. -->
 
-<table border="1">
+<p style="color: rgb(255, 25, 0);">Oh wow look at this red text :D</p>
+
+<table width="30%" height="150" border="1" cellpadding="10" cellspacing="5" style="border-color: #FF0000;">
     <tr>
       <td>Name</td>
       <td>Type(s)</td>
@@ -49,7 +66,118 @@
       </tr>
 </table>
 
-<!-- <strong> is used to make the text bold, while <em> is used to make the text display in italics. -->
+<p>Things to shop for:</p>
+<ul>
+    <li>Lapras Plush</li>
+    <li>Another Lapras Plush</li>
+    <li>A third Lapras Plush</li>
+    
+</ul>
+
+<!-- 
+<ol>
+    <li>Item 4</li>
+    <li>Item 5</li>
+    <li>Item 6</li>
+</ol> -->
+
+<!-- <form action="/submit_form" method="post">
+    <label for="className">Class name:</label><br>
+    <input type="text" id="className" name="className"><br>
+    <label for="teacherName">Teacher name:</label><br>
+    <input type="text" id="teacherName" name="teacherName"><br><br>
+    <input type="submit" value="Submit">
+</form> -->
+
+<form id="myForm" onsubmit="event.preventDefault(); showConfirmation()">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname"><br><br>
+    <label for="pokemonType">Favorite Pokémon Type:</label><br>
+    <select id="pokemonType" name="pokemonType">
+        <option value="normal">Normal</option>
+        <option value="fire">Fire</option>
+        <option value="water">Water</option>
+        <option value="grass">Grass</option>
+        <option value="electric">Electric</option>
+        <option value="psychic">Psychic</option>
+        <option value="fighting">Fighting</option>
+        <option value="flying">Flying</option>
+        <option value="poison">Poison</option>
+        <option value="ground">Ground</option>
+        <option value="rock">Rock</option>
+        <option value="bug">Bug</option>
+        <option value="ghost">Ghost</option>
+        <option value="steel">Steel</option>
+        <option value="ice">Ice</option>
+        <option value="dragon">Dragon</option>
+        <option value="dark">Dark</option>
+        <option value="fairy">Fairy</option>
+        <!-- Add more options as needed -->
+    </select><br><br>
+    <input type="submit" value="Submit">
+  </form>
+  
+  <script>
+    function showConfirmation() {
+        document.body.innerHTML = `
+            <h1>Thank you for submitting this random information :D</h1>
+            <button onclick="returnToHomePage();">Return to Home Page</button>
+            <br><br>
+        `;
+    }
+
+    var n = 0;
+
+    function returnToHomePage() {
+        n = Math.random();
+        if (n <= 0.5) {
+            alert("no :p");
+            displayImage();
+        } else {
+            location.href = 'index.html';
+        }
+    }
+    
+    function displayImage() {
+
+        var existingImage = document.querySelector('img');
+        if (existingImage) {
+            existingImage.parentNode.removeChild(existingImage);
+        }
+
+        // Create a br element
+        // var br = document.createElement('br');
+
+        // Create a div element
+        var div = document.createElement('div');
+
+        // Create an img element
+        var img = document.createElement('img');
+        img.src = 'sillycat.png';
+
+        // Generate random width and height between 100 and 500
+        var randomWidth = Math.floor(Math.random() * 1201) + 100;
+        var randomHeight = Math.floor(Math.random() * 601) + 100;
+
+        // Set the width and height of the image
+        img.style.width = randomWidth + 'px';
+        img.style.height = randomHeight + 'px';
+
+        // Apply sepia and hue-rotate filters to the image
+        img.style.filter = 'sepia(1) hue-rotate(' + 
+            Math.floor(Math.random() * 361) + 'deg)';
+
+        // Append the img element to the div
+        div.appendChild(img);
+
+        // Append the br and div elements to the body
+        // document.body.appendChild(br);
+        document.body.appendChild(div);
+    }
+
+    </script>
 
 </body>
 </html>
