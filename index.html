@@ -109,6 +109,16 @@
      .clear-input::-ms-input-placeholder {
         color: red;
     }
+
+    .fade-out {
+        animation: fadeOut 2s forwards; /* Change 2s to the duration you want */
+    }
+
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+
 </style>
 </head>
 
@@ -149,6 +159,22 @@
 
         // Add an event listener that removes the img element when it is clicked
         img.addEventListener('click', function() {
+            this.classList.add('fade-out');
+            // this.parentNode.removeChild(this);
+
+            // Get the audio element
+            var audio = document.getElementById('oof-sound');
+
+            
+            // Clone the audio element
+            var clone = audio.cloneNode();
+
+            // Play the cloned audio
+            clone.play();
+        });
+
+        img.addEventListener('animationend', function() {
+            // Remove the img element from the DOM
             this.parentNode.removeChild(this);
         });
 
@@ -221,6 +247,7 @@
 
 <audio id="ahh piss" src="sniper_negativevocalization03.mp3"></audio>
 <audio id="nope" src="engineer_no01_1.mp3"></audio>
+<audio id="oof-sound" src="oof-slow.mp3" preload="auto"></audio>
 <button id="playButton">Play some weird sound effect</button>
 <script>
     document.getElementById('playButton').addEventListener('click', function() {
@@ -340,7 +367,7 @@
 
     </script>
 
-<br><br><br>
+<br>
 <input id="clear-input" class="clear-input" type="text" placeholder="Type 'clear' to remove all popup images">
 
 <script>
@@ -358,14 +385,32 @@
                 // Get the image container
                 var container = document.getElementById('image-container');
 
-                // Remove all child nodes of the image container
-                while (container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
+                // Add the fade-out class to all child nodes of the image container
+                Array.from(container.children).forEach(function(img) {
+                    img.classList.add('fade-out');
+                    // Get the audio element
+                    var audio = document.getElementById('oof-sound');
+
+                    
+                    // Clone the audio element
+                    var clone = audio.cloneNode();
+
+                    // Play the cloned audio
+                    clone.play();
+                });
 
                 // Clear the input
                 this.value = '';
             }
+        }
+    });
+
+    // Add an event listener for the animationend event to the image container
+    document.getElementById('image-container').addEventListener('animationend', function(event) {
+        // If the animation is the fade-out animation
+        if (event.animationName === 'fadeOut') {
+            // Remove the target element from the DOM
+            event.target.parentNode.removeChild(event.target);
         }
     });
 </script>
