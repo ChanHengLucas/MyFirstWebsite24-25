@@ -1,3 +1,5 @@
+<!-- This website was made mostly using the help of GitHub Copilot since I am new to HTML. -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,24 +8,168 @@
 <!-- changes text to fit with styles.css -->
 <link rel="icon" href="bruh.png">
 
+
+<!-- Internal CSS -->
 <!-- Internal CSS -->
 <style>
     body { 
-    background-color: #0059ff;
+        background: linear-gradient(to right, #0058ff, #00fffb);
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        /* animation: gradient 5s linear infinite; */
+        background-size: 200% 200%;
+    }
+
+    #bruh-image {
+        position: relative;
+        z-index: -1;
+    }
+
+    @keyframes rainbow {
+        0% {color: red;}
+        14% {color: orange;}
+        28% {color: yellow;}
+        42% {color: lime;}
+        57% {color: #0059ff;}
+        71% {color: #6f00ff;}
+        85% {color: #ff00ff;}
+        100% {color: red;}
+
+    }
+
+    h1 {
+        animation: rainbow 4s linear infinite;
+    }
+
+    .rainbow {
+        animation: rainbow 4s linear infinite;
+    }
+
+    @keyframes yes{
+        0% {color: rgb(201, 0, 0);}
+        50% {color: rgb(201, 121, 0);}
+        100% {color: rgb(201, 0, 0);}
+    }
+
+    .yes {
+        animation: yes 1s linear infinite;
+    }
+
+    @keyframes happ{
+        0% {color: rgb(0, 255, 174);}
+        50% {color: rgb(0, 132, 255);}
+        100% {color: rgb(0, 255, 174);}
+    }
+
+    .happ {
+        animation: happ 1s linear infinite;
+    }
+
+    @keyframes gradient {
+        0% {background: #ff0000;} /* Red */
+        25% {background: #ffff00;} /* Yellow */
+        50% {background: #00ff00;} /* Green */
+        75% {background: #00ffff;} /* Cyan */
+        100% {background: #ff0000;} /* Red */
+    }
+/* 
+    .input-wrapper {
+        position: relative;
+        width: 20%;
+    }
+
+    .clear-input {
+        background: transparent;
+        position: relative;
+        z-index: 1;
+    }
+
+    .animated-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        animation: yes 1s linear infinite;
+    } */
+
+    .clear-input {
+        width: 20%; /* Make the textbox take up the full width of its container */
+    }
+
+    /* Change the placeholder color to red */
+     .clear-input::placeholder {
+        color: red;
+    }
+
+    /* For Internet Explorer 10-11 */
+     .clear-input:-ms-input-placeholder {
+        color: red;
+    }
+
+    /* For Microsoft Edge */
+     .clear-input::-ms-input-placeholder {
+        color: red;
     }
 </style>
 </head>
 
 <body>
 <h1>My first html page</h1>
-<p>Lucas Chan</p>
+<p class="rainbow">Lucas Chan</p>
+
+<div id="image-container"></div>
+<script>
+    // Array of image URLs
+    var images = ['bruh.png', 'sillycat.png'];
+
+    // Function to add a random image at a random position
+    function addRandomImage() {
+        // Create a new img element
+        var img = document.createElement('img');
+
+        // Set the src attribute to a random image URL
+        img.src = images[Math.floor(Math.random() * images.length)];
+
+        // Set the position to a random value
+        img.style.position = 'absolute';
+        img.style.left = Math.random() * window.innerWidth + 'px';
+        img.style.top = Math.random() * window.innerHeight + 'px';
+
+        // Generate random width and height between 100 and 500
+        var randomWidth = Math.floor(Math.random() * 1201) + 100;
+        var randomHeight = Math.floor(Math.random() * 601) + 100;
+
+        // Set the width and height of the image
+        img.style.width = randomWidth + 'px';
+        img.style.height = randomHeight + 'px';
+
+        // Apply sepia and hue-rotate filters to the image
+        img.style.filter = 'sepia(1) hue-rotate(' + 
+            Math.floor(Math.random() * 361) + 'deg)';
+
+
+        // Add an event listener that removes the img element when it is clicked
+        img.addEventListener('click', function() {
+            this.parentNode.removeChild(this);
+        });
+
+        // Add the img element to the image container
+        document.getElementById('image-container').appendChild(img);
+
+        var delay = Math.random() * 5000; // Delay in milliseconds
+        setTimeout(addRandomImage, delay);
+    }
+
+    // Call addRandomImage every few seconds
+    
+    addRandomImage();
+</script>
 
 <!-- Add the img tag here -->
-<img src="bruh.png" alt="Bruh Image">
+<img id="bruh-image" src="bruh.png" alt="Bruh Image">
 
 <script>
     // Select the img element
-    var img = document.querySelector('img[src="bruh.png"]');
+    var img = document.querySelector('img[id="bruh-image"]');
 
     // Function to change the hue of the image
     function changeHue() {
@@ -32,16 +178,15 @@
     }
 
     // Call changeHue every 1000 milliseconds (1 second)
-    setInterval(changeHue, 1);
+    setInterval(changeHue, 25);
 </script>
-<p>I used this image several times before classes started to express my honest reaction to some things.</p>
+<p class="yes">I used this image several times before classes started to express my honest reaction to some things.</p>
 
-
-<p>I am <strong>so excited</strong> to learn website development <em>this semester</em>.</p>
+<p class="happ">I am <strong>so excited</strong> to learn website development <em>this semester</em>.</p>
 
 <!-- <strong> is used to make the text bold, while <em> is used to make the text display in italics. -->
 
-<p style="color: rgb(255, 25, 0);">Oh wow look at this red text :D</p>
+<!-- <p style="color: rgb(255, 25, 0);">Oh wow look at this red text :D</p> -->
 
 <table width="30%" height="150" border="1" cellpadding="10" cellspacing="5" style="border-color: #FF0000;">
     <tr>
@@ -80,7 +225,7 @@
 <script>
     document.getElementById('playButton').addEventListener('click', function() {
         n = Math.random();
-        if(n <= 0.99) {
+        if(n <= 0.9) {
             document.getElementById('nope').play();
             alert("nope");
         } else {
@@ -136,7 +281,7 @@
   </form>
   
   <script>
-    <audio id="nope" src="engineer_no01_1.mp3"></audio>
+    // <audio id="nope" src="engineer_no01_1.mp3"></audio>
     function showConfirmation() {
         document.body.innerHTML = `
             <h1>Thank you for submitting this random information :D</h1>
@@ -194,6 +339,36 @@
     }
 
     </script>
+
+<br><br><br>
+<input id="clear-input" class="clear-input" type="text" placeholder="Type 'clear' to remove all popup images">
+
+<script>
+    // Existing JavaScript code...
+
+    // Get the input element
+    var input = document.getElementById('clear-input');
+
+    // Add an event listener to the input element
+    input.addEventListener('keydown', function(event) {
+        // If the Enter key is pressed
+        if (event.key === 'Enter') {
+            // If the input value is 'clear'
+            if (this.value.toLowerCase() === 'clear') {
+                // Get the image container
+                var container = document.getElementById('image-container');
+
+                // Remove all child nodes of the image container
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+
+                // Clear the input
+                this.value = '';
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
