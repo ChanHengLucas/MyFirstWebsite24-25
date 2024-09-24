@@ -132,6 +132,9 @@
 <script>
     // Array of image URLs
     var images = ['bruh.png', 'sillycat.png', 'sonic.png', 'SurprisedPikachu.png'];
+    var isSpawning = true;
+
+    var spawnRate = 1000; // Spawn rate in milliseconds
 
     // Function to add a random image at a random position
     function addRandomImage() {
@@ -183,8 +186,10 @@
         // Add the img element to the image container
         document.getElementById('image-container').appendChild(img);
 
-        var delay = Math.random() * 5000; // Delay in milliseconds // long line e e e e  e e e e e e e e e e e e  e e e e 
+        var delay = Math.random() * spawnRate; // Delay in milliseconds // long line e e e e  e e e e e e e e e e e e  e e e e 
+        if (isSpawning) {
         setTimeout(addRandomImage, delay);
+        }
     }
 
     // Call addRandomImage every few seconds
@@ -390,6 +395,8 @@
     </script>
 
 <br>
+
+<p>Type "stop" to stop the images from spawning.<br><br>Type "start" for the images to start spawning again.<br><br>Type a number to set the spawn rate of the images in milliseconds.</p>
 <input id="clear-input" class="clear-input" type="text" placeholder="Type 'clear' to remove all popup images">
 
 <script>
@@ -420,10 +427,25 @@
                     // Play the cloned audio
                     clone.play();
                 });
-
-                // Clear the input
-                this.value = '';
+            } else if (this.value.toLowerCase() === 'slow') {
+            // Double the spawn rate
+            spawnRate *= 2;
+            } else if (this.value.toLowerCase() === 'fast') {
+            // Halve the spawn rate
+            spawnRate /= 2;
+            } else if (!isNaN(this.value)) {
+            // Update the spawn rate
+            spawnRate = Number(this.value);
+            } else if (this.value.toLowerCase() === 'stop') {
+                isSpawning = false;
             }
+            // If the input value is 'start'
+            else if (this.value.toLowerCase() === 'start') {
+                isSpawning = true;
+                // If images are not currently spawning, start spawning them
+                addRandomImage();
+            }
+            this.value = '';
         }
     });
 
