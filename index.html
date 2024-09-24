@@ -1,4 +1,5 @@
 <!-- This website was made mostly using the help of GitHub Copilot since I am new to HTML. -->
+<!-- https://docs.google.com/document/d/10on3DFwg_oEzwjoE0kae0fiMFVxMUHfT9AKspmnikdo/edit?usp=sharing -->
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +9,7 @@
 <!-- changes text to fit with styles.css -->
 <link rel="icon" href="bruh.png">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Internal CSS -->
 <!-- Internal CSS -->
@@ -16,7 +18,7 @@
         background: linear-gradient(to right, #0058ff, #00fffb);
         font-family: 'Comic Sans MS', cursive, sans-serif;
         /* animation: gradient 5s linear infinite; */
-        background-size: 200% 200%;
+        background-size: 500% 500%;
     }
 
     #bruh-image {
@@ -129,7 +131,7 @@
 <div id="image-container"></div>
 <script>
     // Array of image URLs
-    var images = ['bruh.png', 'sillycat.png'];
+    var images = ['bruh.png', 'sillycat.png', 'sonic.png', 'SurprisedPikachu.png'];
 
     // Function to add a random image at a random position
     function addRandomImage() {
@@ -145,8 +147,8 @@
         img.style.top = Math.random() * window.innerHeight + 'px';
 
         // Generate random width and height between 100 and 500
-        var randomWidth = Math.floor(Math.random() * 1201) + 100;
-        var randomHeight = Math.floor(Math.random() * 601) + 100;
+        var randomWidth = Math.floor(Math.random() * 2001) + 100;
+        var randomHeight = Math.floor(Math.random() * 1001) + 100;
 
         // Set the width and height of the image
         img.style.width = randomWidth + 'px';
@@ -181,7 +183,7 @@
         // Add the img element to the image container
         document.getElementById('image-container').appendChild(img);
 
-        var delay = Math.random() * 5000; // Delay in milliseconds
+        var delay = Math.random() * 5000; // Delay in milliseconds // long line e e e e  e e e e e e e e e e e e  e e e e 
         setTimeout(addRandomImage, delay);
     }
 
@@ -213,6 +215,26 @@
 <!-- <strong> is used to make the text bold, while <em> is used to make the text display in italics. -->
 
 <!-- <p style="color: rgb(255, 25, 0);">Oh wow look at this red text :D</p> -->
+
+<!-- Display the date -->
+<button id="date-button">Get Current Date and Time</button>
+<p id="date-display"></p>
+<script>
+    // Get the button element
+    var button = document.getElementById('date-button');
+
+    // Add an event listener to the button
+    button.addEventListener('click', function() {
+        // Get the current date and time
+        var now = new Date();
+
+        // Format the date and time
+        var dateTime = now.toLocaleString();
+
+        // Display the date and time
+        alert(document.getElementById('date-display').textContent = dateTime);
+    });
+</script>
 
 <table width="30%" height="150" border="1" cellpadding="10" cellspacing="5" style="border-color: #FF0000;">
     <tr>
@@ -415,5 +437,35 @@
     });
 </script>
 
+<p id="death-count">PNGs murdered: </p>
+<script>
+    // Declare a variable to keep track of the number of PNG deaths
+    var pngDeaths = 0;
+
+    // Add an event listener for the animationend event to the image container
+    document.getElementById('image-container').addEventListener('animationend', function(event) {
+        console.log('animationend event triggered'); // Debugging line
+
+        // If the animation is the fade-out animation
+        if (event.animationName === 'fadeOut') {
+            console.log('fadeOut animation detected'); // Debugging line
+
+            // Check if the parent node exists before removing the target element
+            if (event.target.parentNode) {
+                event.target.parentNode.removeChild(event.target);
+            }
+
+            // Increment the number of PNG deaths
+            pngDeaths++;
+
+            // Get the paragraph element and update its text content
+            var deathCountParagraph = document.getElementById('death-count');
+            deathCountParagraph.textContent = 'PNGs murdered: ' + pngDeaths;
+        }
+    });
+</script>
+
 </body>
 </html>
+
+<!-- additional goals: make oof distorted :D -->
